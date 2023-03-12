@@ -50,7 +50,7 @@ strong {
   text-decoration: none;
   transition: all 200ms ease;
 }
-#tempBox {
+ul.tempBox {
   display: block;
   margin: auto 0px;
   padding: 5px;
