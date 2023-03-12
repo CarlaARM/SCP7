@@ -50,6 +50,11 @@ strong {
   text-decoration: none;
   transition: all 200ms ease;
 }
+#tempBox {
+  display: block;
+  margin: auto 0px;
+  padding: 5px;
+}
 #temp {
   font-size: 12px;
 }
