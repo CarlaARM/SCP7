@@ -18,7 +18,7 @@ strong {
   text-align: left;
 }
 
-#search-section {
+#wrapper {
   max-width: 500px;
   margin: 0 auto;
   padding: 5px;
@@ -77,10 +77,23 @@ ul.tempBox {
   display: block;
   margin: auto 0px;
   padding: 5px;
-  font-size: 10px;
 }
 #temp {
-  font-size: 20px;
+  font-size: 25px;
+}
+#image {
+  position: relative;
+  top: -5px;
+}
+#cent {
+  position: relative;
+  top: -5px;
+  font-size: 10px;
+}
+#faren {
+  position: relative;
+  top: -5px;
+  font-size: 10px;
 }
 #gitHub {
   font-size: 10px;
