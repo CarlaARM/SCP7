@@ -3,6 +3,21 @@ body {
     "Lucida Sans", Arial, sans-serif;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  text-align: right;
+  font-size: 10px;
+}
+strong {
+  font-size: 20px;
+  text-align: left;
+}
+
 #search-section {
   max-width: 500px;
   margin: 0 auto;
@@ -15,7 +30,11 @@ body {
 }
 
 #dateToday {
-  font-size: 15px;
+  font-size: 10px;
+  text-align: left;
+}
+#weather {
+  font-size: 10px;
   text-align: left;
 }
 
@@ -25,15 +44,6 @@ body {
   padding: 5px;
   border: 1px solid rgb(151, 114, 243);
   border-radius: 20px;
-}
-li {
-  list-style: none;
-  text-align: right;
-  font-size: 10px;
-}
-strong {
-  font-size: 20px;
-  text-align: left;
 }
 
 #currentBut {
@@ -67,9 +77,10 @@ ul.tempBox {
   display: block;
   margin: auto 0px;
   padding: 5px;
+  font-size: 10px;
 }
 #temp {
-  font-size: 12px;
+  font-size: 20px;
 }
 #gitHub {
   font-size: 10px;
