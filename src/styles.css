@@ -38,6 +38,10 @@ strong {
   text-align: left;
 }
 
+#weather:first-letter {
+  text-transform: capitalize;
+}
+
 #wrap {
   max-width: 500px;
   margin: 0 auto;

@@ -40,9 +40,10 @@ function citySearch(event) {
     event.preventDefault();
     let imageIcon = document.querySelector("#image");
     imageIcon.setAttribute(
-      "#image",
-      `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+      "src",
+      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+    imageIcon.setAttribute("alt", response.data.weather[0].icon);
   }
   axios.get(apiUrl).then(icon);
 
