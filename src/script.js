@@ -20,6 +20,14 @@ function citySearch(event) {
   let apiKey = "2ff29bed3181c3526c35cc5408037f85";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityTemp}&appid=${apiKey}&units=metric`;
 
+  function descrip(response) {
+    event.preventDefault();
+    let weatherDescrip = response.data.weather[0].description;
+    let descripWeather = document.querySelector("#weather");
+    descripWeather.innerHTML = weatherDescrip;
+  }
+  axios.get(apiUrl).then(descrip);
+
   function temperatura(response) {
     event.preventDefault();
     let tempe = Math.round(response.data.main.temp);
@@ -27,6 +35,16 @@ function citySearch(event) {
     temp.innerHTML = tempe;
   }
   axios.get(apiUrl).then(temperatura);
+
+  function icon(response) {
+    event.preventDefault();
+    let imageIcon = document.querySelector("#image");
+    imageIcon.setAttribute(
+      "#image",
+      `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
+    );
+  }
+  axios.get(apiUrl).then(icon);
 
   function minTemp(response) {
     let tempemin = Math.round(response.data.main.temp_min);
