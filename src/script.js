@@ -17,7 +17,7 @@ function citySearch(event) {
   let cityTemp = cityChange.value;
   h1.innerHTML = cityTemp;
 
-  let apiKey = "6a0bac9dced487830ce6066218a5481c";
+  let apiKey = "2ff29bed3181c3526c35cc5408037f85";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityTemp}&appid=${apiKey}&units=metric`;
 
   function temperatura(response) {
@@ -59,7 +59,7 @@ function currentPosition(event) {
   function yourPosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-    let apiKey = "6a0bac9dced487830ce6066218a5481c";
+    let apiKey = "2ff29bed3181c3526c35cc5408037f85";
     let apiUrlC = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     let apiUrlCC = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`;
 
