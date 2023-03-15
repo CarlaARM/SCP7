@@ -25,27 +25,30 @@
         </form>
         <button id="currentBut">Current</button>
       </ul>
-      <ul>
-        <h1 id="selectedCity">City</h1>
-        <h2 id="dateToday">Today is</h2>
-      </ul>
-      <ul class="tempBox">
-        <div class="row">
-          <div class="col-6">
-            <container id="image"><img src="#" alt="image" /></container>
-            <container id="temp"> <strong>8</strong></container>
-            <container id="cent">°C</container>/
-            <container id="faren">°F</container>
-            Average
+      <div id="wrap">
+        <ul>
+          <h1 id="selectedCity">City</h1>
+          <h2 id="dateToday">Today is</h2>
+          <div id="weather">Weather</div>
+        </ul>
+        <ul class="tempBox">
+          <div class="row">
+            <div class="col-6">
+              <container id="image"><img src="#" alt="image" /></container>
+              <container id="temp"> <strong>8</strong></container>
+              <container id="cent">°C</container>/
+              <container id="faren">°F</container>
+              Average
+            </div>
+            <div class="col-3">
+              <li><container id="min"></container>°C Min</li>
+              <li><container id="max"></container>°C Max</li>
+              <li><container id="wind"></container>Km/h Wind</li>
+            </div>
           </div>
-          <div class="col-3">
-            <li><container id="min"></container>°C Min</li>
-            <li><container id="max"></container>°C Max</li>
-            <li><container id="wind"></container>Km/h Wind</li>
-          </div>
-        </div>
-        <br />
-      </ul>
+          <br />
+        </ul>
+      </div>
     </div>
     <small id="gitHub">
       Carla ARM. Open source code
