@@ -27,8 +27,8 @@ function temperatura(response) {
   let cityChange = document.querySelector("#selectedCity");
   cityChange.innerHTML = response.data.name;
 
-  let dateToday = document.querySelector("#dateToday");
-  dateToday.innerHTML = formatDate(response.data.dt * 1000);
+  let currentDate = document.querySelector("#dateToday");
+  currentDate.innerHTML = formatDate(response.data.dt * 1000);
 
   let weatherDescrip = response.data.weather[0].description;
   let descripWeather = document.querySelector("#weather");
