@@ -18,7 +18,9 @@ function formatDate(timestamp) {
 }
 
 function temperatura(response) {
-  let tempe = Math.round(response.data.main.temp);
+  centTemp = response.data.main.temp;
+
+  let tempe = Math.round(centTemp);
   let temp = document.querySelector("#temp");
   temp.innerHTML = tempe;
 
@@ -52,61 +54,43 @@ function temperatura(response) {
   wind.innerHTML = windy;
 }
 
-function citySearch(event) {
-  event.preventDefault();
-  let city = document.querySelector("#search-city");
-  city.addEventListener("submit", citySearch.value);
-  let apiKey = "2ff29bed3181c3526c35cc5408037f85";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityTemp}&appid=${apiKey}&units=metric`;
+function searchCity(citySearch) {
+  let apiKey = "a2dda52dce059eb8a14e95aaa0db6ab7";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(temperatura);
 }
 
-function currentPosition(event) {
+function citySearch(event) {
   event.preventDefault();
-
-  function yourPosition(position) {
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-    let apiKey = "2ff29bed3181c3526c35cc5408037f85";
-    let apiUrlC = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-    let apiUrlCC = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${apiKey}`;
-
-    function currentCity(response) {
-      let cityTempC = response.name;
-      let h1C = document.querySelector("#selectedCity");
-      h1C.innerHTML = cityTempC;
-    }
-    axios.get(apiUrlCC).then(currentCity);
-
-    function temperature(response) {
-      let currentTemp = Math.round(response.data.main.temp);
-      let tempCu = document.querySelector("#temp");
-      tempCu.innerHTML = currentTemp;
-    }
-    axios.get(apiUrlC).then(temperature);
-
-    function minTempC(response) {
-      let tempeminC = Math.round(response.data.main.temp_min);
-      let tempminC = document.querySelector("#min");
-      tempminC.innerHTML = tempeminC;
-    }
-    axios.get(apiUrlC).then(minTempC);
-
-    function maxTempC(response) {
-      let tempemaxC = Math.round(response.data.main.temp_max);
-      let tempmaxC = document.querySelector("#max");
-      tempmaxC.innerHTML = tempemaxC;
-    }
-    axios.get(apiUrlC).then(maxTempC);
-
-    function windVelC(response) {
-      let windyC = Math.round(response.data.wind.speed);
-      let windC = document.querySelector("#wind");
-      windC.innerHTML = windyC;
-    }
-    axios.get(apiUrlC).then(windVelC);
-  }
-  navigator.geolocation.getCurrentPosition(yourPosition);
+  let city = document.querySelector("#city");
+  searchCity(city.value);
 }
-let currentLoc = document.querySelector("#currentBut");
-currentLoc.addEventListener("click", currentPosition);
+
+let cityS = document.querySelector("#search-city");
+cityS.addEventListener("submit", citySearch);
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp");
+
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheiTemp = (centTemp * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheiTemp);
+}
+
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  let temperature = document.querySelector("#temp");
+  temperature.innerHTML = Math.round(centTemp);
+}
+
+let centTemp = null;
+
+let fahrenheit = document.querySelector("#fahren");
+fahrenheit.addEventListener("click", displayFahrenheitTemp);
+
+let celsius = document.querySelector("#cent");
+celsius.addEventListener("click", displayCelsiusTemp);
