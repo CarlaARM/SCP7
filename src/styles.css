@@ -50,17 +50,6 @@ strong {
   border-radius: 20px;
 }
 
-#currentBut {
-  border-radius: 10px;
-  margin: 0;
-  background-color: darkblue;
-  color: white;
-  font-size: 12px;
-  line-height: 12px;
-  padding: 16px 24px;
-  text-decoration: none;
-  transition: all 200ms ease;
-}
 #search-city {
   margin: 0px;
   padding: 5px;
