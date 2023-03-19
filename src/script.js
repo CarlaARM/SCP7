@@ -1,76 +1,65 @@
-let currentDate = new Date();
-let days = ["Sunday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let day = days[currentDate.getDay()];
-let time = currentDate.getHours();
-let minutes = currentDate.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
+function formatDate(timestamp) {
+  let currentDate = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[currentDate.getDay()];
+  let time = currentDate.getHours();
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${time}:${minutes}`;
 }
-let updateDate = `${day} ${time}:${minutes}`;
-let dateToday = document.querySelector("#dateToday");
-dateToday.innerHTML = updateDate;
+
+function temperatura(response) {
+  let tempe = Math.round(response.data.main.temp);
+  let temp = document.querySelector("#temp");
+  temp.innerHTML = tempe;
+
+  let cityChange = document.querySelector("#selectedCity");
+  cityChange.innerHTML = response.data.name;
+
+  let dateToday = document.querySelector("#dateToday");
+  dateToday.innerHTML = formatDate(response.data.dt * 1000);
+
+  let weatherDescrip = response.data.weather[0].description;
+  let descripWeather = document.querySelector("#weather");
+  descripWeather.innerHTML = weatherDescrip;
+
+  let imageIcon = document.querySelector("#icon");
+  imageIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  imageIcon.setAttribute("alt", response.data.weather[0].description);
+
+  let tempemin = Math.round(response.data.main.temp_min);
+  let tempmin = document.querySelector("#min");
+  tempmin.innerHTML = tempemin;
+
+  let tempemax = Math.round(response.data.main.temp_max);
+  let tempmax = document.querySelector("#max");
+  tempmax.innerHTML = tempemax;
+
+  let windy = Math.round(response.data.wind.speed);
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = windy;
+}
 
 function citySearch(event) {
   event.preventDefault();
-  let cityChange = document.querySelector("#city");
-  let h1 = document.querySelector("h1");
-  let cityTemp = cityChange.value;
-  h1.innerHTML = cityTemp;
-
+  let city = document.querySelector("#search-city");
+  city.addEventListener("submit", citySearch.value);
   let apiKey = "2ff29bed3181c3526c35cc5408037f85";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityTemp}&appid=${apiKey}&units=metric`;
-
-  function descrip(response) {
-    event.preventDefault();
-    let weatherDescrip = response.data.weather[0].description;
-    let descripWeather = document.querySelector("#weather");
-    descripWeather.innerHTML = weatherDescrip;
-  }
-  axios.get(apiUrl).then(descrip);
-
-  function temperatura(response) {
-    event.preventDefault();
-    let tempe = Math.round(response.data.main.temp);
-    let temp = document.querySelector("#temp");
-    temp.innerHTML = tempe;
-  }
   axios.get(apiUrl).then(temperatura);
-
-  function icon(response) {
-    event.preventDefault();
-    let imageIcon = document.querySelector("#image");
-    imageIcon.setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-    imageIcon.setAttribute("alt", response.data.weather[0].icon);
-  }
-  axios.get(apiUrl).then(icon);
-
-  function minTemp(response) {
-    let tempemin = Math.round(response.data.main.temp_min);
-    let tempmin = document.querySelector("#min");
-    tempmin.innerHTML = tempemin;
-  }
-  axios.get(apiUrl).then(minTemp);
-
-  function maxTemp(response) {
-    let tempemax = Math.round(response.data.main.temp_max);
-    let tempmax = document.querySelector("#max");
-    tempmax.innerHTML = tempemax;
-  }
-  axios.get(apiUrl).then(maxTemp);
-
-  function windVel(response) {
-    let windy = Math.round(response.data.wind.speed);
-    let wind = document.querySelector("#wind");
-    wind.innerHTML = windy;
-  }
-  axios.get(apiUrl).then(windVel);
 }
-
-let city = document.querySelector("#search-city");
-city.addEventListener("submit", citySearch);
 
 function currentPosition(event) {
   event.preventDefault();
